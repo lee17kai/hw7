@@ -1,0 +1,1 @@
+# hw7 Hello, this was our 7th hw assignment for KIEI-451. We created some data in a relational database and then created an API end point that provides data on a course and its lecturers and reviews. We had to add all the sections for each course and then add all the reviews for each section within that. We also added summaries of reviews by section and also by course overall. 
