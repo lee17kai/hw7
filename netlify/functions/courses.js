@@ -106,7 +106,7 @@ exports.handler = async function(event) {
     // ask Firebase for the reviews corresponding to the section ID of the course, wait for the response
     let reviewsQuery = await db.collection('reviews').where(`sectionId`, `==`, sectionId).get()
 
-    // get the documents from the query .docs turns reviews Query into array
+    // get the documents from the query ().docs turns reviews Query into array)
     let reviews = reviewsQuery.docs
 
     //Create counters to track total number of reviews per section and sum of ratings per section
@@ -122,13 +122,10 @@ exports.handler = async function(event) {
       let reviewData = reviews[reviewIndex].data()
 
       //create an object to be added to the return value of our lambda
-      let reviewObject = {}
-
-      // // //add the body to the review object
-      reviewObject.body = reviewData.body
-
-      //add the rating to the review object
-      reviewObject.rating = reviewData.rating
+      let reviewObject = {
+        body: reviewData.body,
+        rating: reviewData.rating
+      }
 
       // add to counters
       countSectionReviews = countSectionReviews + 1
@@ -136,6 +133,7 @@ exports.handler = async function(event) {
       countCourseReviews = countCourseReviews + 1
       sumCourseRatings = sumCourseRatings + Number(reviewObject.rating)
 
+      // add the review object to the section objec
       sectionObject.sectionReviews.push(reviewObject)
     }
     // create a section review summary object
