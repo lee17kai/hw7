@@ -153,7 +153,7 @@ exports.handler = async function(event) {
   //add the course review summary object to the return value
   returnValue.courseReviewSummary.push(courseReviewSummaryObject)
 
-  // return the standard response
+  // return the standard response 
   return {
     statusCode: 200,
     body: JSON.stringify(returnValue)
